@@ -1,0 +1,44 @@
+[
+    {
+        "first_name": "Innocent",
+        "last_name": "Paul",
+        "username": "cent",
+        "height": 190,
+        "role": "Teacher"
+    },
+    {
+        "first_name": "slkdfjalsdkfasdk",
+        "last_name": "Paul",
+        "username": "centpeter",
+        "height": 190,
+        "role": "Teacher"
+    },
+    {
+        "first_name": "Solomon",
+        "last_name": "Jedidiah",
+        "username": "Pace",
+        "height": 180,
+        "role": "Student"
+    },
+    {
+        "first_name": "Johnson",
+        "last_name": "eTech",
+        "username": "eTech",
+        "height":175,
+        "role":"Teacher"
+    },
+    {
+        "first_name": "Enoch",
+        "last_name": "Enoch",
+        "username": "Enoch",
+        "height":182,
+        "role":"Student"
+    },
+    {
+        "first_name": "Tunde",
+        "last_name": "Tunde",
+        "username": "Tunde",
+        "height":170,
+        "role":"Student"
+    }
+]

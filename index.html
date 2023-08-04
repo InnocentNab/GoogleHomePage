@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fontawesome-free-6.2.0-web/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="flex gap-5 items-center justify-end py-3 px-6 ">
+        <a href="" class="hover:border-b hover:border-black">Gmail</a>
+        <a href="" class="hover:border-b hover:border-black">images</a>
+        <i class=" text-[30px] fa-solid fa-square-full"></i>
+        <img src="Screenshot 2023-02-22 115704.png" alt="" class="w-[30px] h-[30px] rounded-full">
+    </div>
+    <div class="h-screen flex py-[110px] items-center flex-col gap-5">
+        <div class="flex justify-center">
+            <img src="googlelogo_color_272x92dp.png" alt="">
+        </div>
+        <div class="flex justify-center items-center gap-3 border px-4 rounded-[25px]">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" class="w-[500px] h-[40px] outline-none" id="search">
+            <i class="fa-solid fa-microphone"></i>
+            <i class="fa-solid fa-camera"></i>
+        </div>
+        <div class="flex gap-7 py-5">
+            <button
+                class="bg-slate-100 py-[5px] px-[8px] rounded-[5px] hover:shadow-[0_0_60px_-15px_rgba(0,0,0,0.5)] transition-all duration-400">Google
+                Search</button>
+            <button class="bg-slate-100 py-[5px] px-[8px] rounded-[5px]">I'm feeling funky</button>
+        </div>
+
+        <div id="result" class="flex flex-col gap-6">
+        </div>
+
+        <div class="flex">
+            <div>
+                Google offered in:
+                <a href="" class=" hover:border-b hover:border-black text-blue-500">Hausa</a>
+                <a href="" class="hover:border-b hover:border-black text-blue-500">Igbo</a>
+                <a href="" class="hover:border-b hover:border-black text-blue-500">Ede Yoruba</a>
+                <a href="" class="hover:border-b hover:border-black text-blue-500">Nigerian Pidgin</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        var persons = []
+        window.addEventListener('DOMContentLoaded', async () => {
+            persons = await fetch('./name.json')
+                .then(response => response.json())
+                .then(persons => persons)
+        })
+
+        const input = document.getElementById("search")
+        input.addEventListener('keyup', (e) => {
+            const searchTerm = e.target.value
+            if (!searchTerm) return
+
+            var r = persons.filter(person => {
+                var username = person.username.toLowerCase()
+                var fn = person.first_name.toLowerCase()
+                var ln = person.last_name.toLowerCase()
+                var height = person.height.toString()
+                var role = person.role.toLowerCase()
+                if(username.startsWith(searchTerm.toLowerCase())) return true
+                if(fn.startsWith(searchTerm.toLowerCase())) return true
+                if(ln.startsWith(searchTerm.toLowerCase())) return true
+                if(role.startsWith(searchTerm.toLowerCase())) return true
+                
+                if(height.startsWith(searchTerm.toString())) return true
+            })
+            console.log(r);
+            var result = ``
+            r.forEach(person => {
+                result += `<div class="flex flex-col gap-4 min-w-[500px]">
+                <div class="flex items-center gap-16">First Name:<span class="font-bold">${person.first_name} </span></div>
+                <div class="flex items-center gap-16">Last Name:<span class="font-bold">${person.last_name}</span></div>
+                <div class="flex items-center gap-16">Username:<span class="font-bold">${person.username}</span></div>
+                <div class="flex items-center gap-16">Height:<span class="font-bold">${person.height}</span></div>
+                <div class="flex items-center gap-16">Role:<span class="font-bold">${person.role}</span></div>
+            </div>`
+            });
+
+            var cont = document.getElementById("result")
+            cont.innerHTML = result
+        })
+    </script>
+</body>
+
+</html>
